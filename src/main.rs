@@ -59,16 +59,17 @@ fn get_count(c: Complex64, iter_count: u32) -> i32 {
     }
 }
 
+#[allow(dead_code)]
 fn draw_counts(set: Vec<Vec<i32>>, w: u32, h: u32) {
     let mut imgbuf = image::ImageBuffer::new(w, h);
     for (x,y,pix) in imgbuf.enumerate_pixels_mut() {
         let row = set.get(y as usize).unwrap();
         let pnt = row.get(x as usize).unwrap();
         if *pnt == -1 {
-            *pix = image::Rgb([255 as u8,255 as u8,255 as u8]);
+            *pix = image::Rgb([0 as u8,0 as u8,0 as u8]);
         } else {
-            let b: u8 = (((pnt * 4)) % 256) as u8;
-            let r: u8 = (((pnt * 2)) % 256) as u8;
+            let b: u8 = (((pnt * 4) + 64) % 256) as u8;
+            let r: u8 = (((pnt * 2) + 64) % 256) as u8;
             *pix = image::Rgb([b,0,r]);
         }
     }
@@ -76,6 +77,7 @@ fn draw_counts(set: Vec<Vec<i32>>, w: u32, h: u32) {
     imgbuf.save("img.png").unwrap();
 }
 
+#[allow(dead_code)]
 fn print_set(set: Vec<i32>,w: u32, h: u32) {
     for i in 0..h {
         for j in 0..w {
