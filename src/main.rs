@@ -45,8 +45,8 @@ fn count_set(w: u32, h: u32, start_x: f64, start_y: f64, box_width: f64, box_hei
 }
 
 fn get_count(c: Complex64, iter_count: u32) -> i32 {
-    let mut i = 0;
-    let mut z = Complex64::new(0f64,0f64);
+    let mut i = 1;
+    let mut z = c;
     loop {
         if (z.re * z.re + z.im*z.im) >= 4.0 {
             return i
